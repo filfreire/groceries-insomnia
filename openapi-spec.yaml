@@ -1,0 +1,66 @@
+openapi: 3.1.0
+servers:
+  - url: localhost:5000
+tags:  
+  - name: test
+    description: just a test tag
+info:
+  title: Grocery API
+  version: 1.0.0
+  description: An API to manage a list of groceries
+  contact:
+    email: noreply@insomnia.rest
+paths:
+  /add_grocery:
+    post:
+      operationId: add_grocery
+      tags: 
+        - test
+      summary: Add a grocery to the list
+      description: Add a grocery to the list
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grocery:
+                  type: string
+      responses:
+        '200':
+          description: Grocery added successfully
+        '400':
+          description: Grocery already exists
+  /get_groceries:
+    get:
+      summary: Get the list of groceries
+      description: Get the list of groceries
+      operationId: get_groceries
+      tags: 
+        - test
+      responses:
+        '200':
+          description: List of groceries retrieved successfully
+  /delete_grocery:
+    delete:
+      summary: Delete a grocery from the list
+      description: Delete a grocery from the list
+      operationId: delete_grocery
+      tags: 
+        - test
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grocery:
+                  type: string
+      responses:
+        '200':
+          description: Grocery deleted successfully
+        '404':
+          description: Grocery not found
+

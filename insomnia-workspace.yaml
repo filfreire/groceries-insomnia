@@ -1,0 +1,319 @@
+_type: export
+__export_format: 4
+__export_date: 2024-05-15T12:53:46.817Z
+__export_source: insomnia.desktop.app:v9.2.0-beta.0
+resources:
+  - _id: req_b065e15df653467db8ba8b1754a16738
+    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
+    modified: 1715679555899
+    created: 1715679555899
+    url: "{{ _.base_url }}/delete_grocery"
+    name: Delete a grocery from the list
+    description: ""
+    method: DELETE
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "grocery": "string"
+        }
+    preRequestScript: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        disabled: false
+        value: application/json
+    authentication: {}
+    metaSortKey: -1715679555899
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_3e06178292a942b29a9d91b22de0cd61
+    parentId: null
+    modified: 1715679491227
+    created: 1715679491227
+    name: Grocery API Spec
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_e45190736e9549a3957478cea5670215
+    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
+    modified: 1715679555898
+    created: 1715679555898
+    url: "{{ _.base_url }}/get_groceries"
+    name: Get the list of groceries
+    description: ""
+    method: GET
+    body: {}
+    preRequestScript: ""
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1715679555898
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_d08e877ba2bc4c29a29072970126cb75
+    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
+    modified: 1715704377543
+    created: 1715679555896
+    url: "{{ _.base_url }}/add_grocery"
+    name: Add a grocery to the list
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "grocery": "{{ _.product }}"
+        }
+    preRequestScript: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        disabled: false
+        value: application/json
+    authentication: {}
+    metaSortKey: -1715679555896
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_97e01d035f054b4284a4efb8c1b8b42f
+    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
+    modified: 1715703914578
+    created: 1715703908238
+    url: "{{ _.base_url }}/add_grocery"
+    name: Add a grocery to the list (invalid)
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        }
+    preRequestScript: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        disabled: false
+        value: application/json
+    authentication: {}
+    metaSortKey: -1715679019146
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_3edf38c4494798454d0603c19675031d50ba228f
+    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
+    modified: 1715679658837
+    created: 1715679491229
+    name: Base Environment
+    data:
+      base_url: "{{ _.scheme }}://{{ _.host }}"
+    dataPropertyOrder:
+      "&":
+        - base_url
+    color: null
+    isPrivate: false
+    metaSortKey: 1715679491229
+    _type: environment
+  - _id: jar_3edf38c4494798454d0603c19675031d50ba228f
+    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
+    modified: 1715679491229
+    created: 1715679491229
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_c3c45799cf0846d29cf84f74eece0c35
+    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
+    modified: 1715696603739
+    created: 1715679491228
+    fileName: Grocery API Spec
+    contents: |
+      openapi: 3.1.0
+      servers:
+        - url: localhost:5000
+      tags:  
+        - name: test
+          description: just a test tag
+      info:
+        title: Grocery API
+        version: 1.0.0
+        description: An API to manage a list of groceries
+        contact:
+          email: noreply@insomnia.rest
+      paths:
+        /add_grocery:
+          post:
+            operationId: add_grocery
+            tags: 
+              - test
+            summary: Add a grocery to the list
+            description: Add a grocery to the list
+            requestBody:
+              required: true
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      grocery:
+                        type: string
+            responses:
+              '200':
+                description: Grocery added successfully
+              '400':
+                description: Grocery already exists
+        /get_groceries:
+          get:
+            summary: Get the list of groceries
+            description: Get the list of groceries
+            operationId: get_groceries
+            tags: 
+              - test
+            responses:
+              '200':
+                description: List of groceries retrieved successfully
+        /delete_grocery:
+          delete:
+            summary: Delete a grocery from the list
+            description: Delete a grocery from the list
+            operationId: delete_grocery
+            tags: 
+              - test
+            requestBody:
+              required: true
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      grocery:
+                        type: string
+            responses:
+              '200':
+                description: Grocery deleted successfully
+              '404':
+                description: Grocery not found
+    contentType: yaml
+    _type: api_spec
+  - _id: uts_09eb0d3a9a5242788c071b81aad374fc
+    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
+    modified: 1715680065334
+    created: 1715680011042
+    name: Sanity checks
+    metaSortKey: -1715680011042
+    _type: unit_test_suite
+  - _id: env_06e54cc47ba94368b0c0b7440c27350b
+    parentId: env_3edf38c4494798454d0603c19675031d50ba228f
+    modified: 1715679555894
+    created: 1715679555894
+    name: OpenAPI env example.com
+    data:
+      scheme: http
+      base_path: ""
+      host: example.com
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1715679555894
+    _type: environment
+  - _id: env_8945eca7df8049dbaba7b4b3123521de
+    parentId: env_3edf38c4494798454d0603c19675031d50ba228f
+    modified: 1715704363379
+    created: 1715679568515
+    name: Local
+    data:
+      scheme: http
+      base_path: ""
+      host: localhost:5000
+      product: "{% faker 'randomProduct' %}"
+    dataPropertyOrder:
+      "&":
+        - scheme
+        - base_path
+        - host
+        - product
+    color: null
+    isPrivate: false
+    metaSortKey: 1715679568515
+    _type: environment
+  - _id: env_c7ed81d9042845618544d157bbcdef2c
+    parentId: env_3edf38c4494798454d0603c19675031d50ba228f
+    modified: 1715704227560
+    created: 1715704219027
+    name: Production
+    data:
+      scheme: http
+      base_path: ""
+      host: localhost:5000
+    dataPropertyOrder:
+      "&":
+        - scheme
+        - base_path
+        - host
+    color: null
+    isPrivate: false
+    metaSortKey: 1715704219027
+    _type: environment
+  - _id: env_0e23b59bf81045909a1c7ca3479d91b7
+    parentId: env_3edf38c4494798454d0603c19675031d50ba228f
+    modified: 1715704816119
+    created: 1715704810625
+    name: Staging
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1715704810625
+    _type: environment
+  - _id: ut_44d88c02476f43a0845373f678304e63
+    parentId: uts_09eb0d3a9a5242788c071b81aad374fc
+    modified: 1715680090729
+    created: 1715680014759
+    requestId: req_d08e877ba2bc4c29a29072970126cb75
+    name: We should not be able to re-add the same grocery item
+    code: |-
+      
+
+      const response1 = await insomnia.send();
+      expect(response1.status).to.equal(200);
+
+      const response2 = await insomnia.send();
+      expect(response2.status).to.equal(400);
+    metaSortKey: -1715680014759
+    _type: unit_test
+  - _id: ut_87375e3e67ca4568b89f06e1a09a9669
+    parentId: uts_09eb0d3a9a5242788c071b81aad374fc
+    modified: 1715703932060
+    created: 1715703847125
+    requestId: req_97e01d035f054b4284a4efb8c1b8b42f
+    name: We should not be able to add invalid groceries
+    code: |-
+      const response1 = await insomnia.send();
+      expect(response1.status).to.equal(400);
+    metaSortKey: -1715703847125
+    _type: unit_test

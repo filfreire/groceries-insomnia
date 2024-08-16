@@ -31,5 +31,10 @@ def delete_grocery():
     else:
         return jsonify({'error': 'Grocery not found'}), 404
 
+@app.route('/clear_all', methods=['GET'])
+def debug_clear_all():
+    groceries.clear()
+    return jsonify({'message': 'Debug all groceries deleted successfully'})
+
 if __name__ == '__main__':
     app.run(debug=True)

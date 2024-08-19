@@ -73,7 +73,7 @@ jobs:
             ENDSSH
 
   test:
-    name: Test (using insomnia exported .yaml file)
+    name: Test (using insomnia .yaml export file)
     needs: deploy
     runs-on: ubuntu-latest
     steps:

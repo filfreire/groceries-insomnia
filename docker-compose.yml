@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  groceries-app:
+    image: groceries-app:latest
+    container_name: groceries-app
+    ports:
+      - "5000:5000"
+    restart: always
+    deploy:
+      update_config:
+        order: start-first
+    pull_policy: always

@@ -60,6 +60,7 @@ jobs:
           ssh-keyscan $MACHINE_IP >> ~/.ssh/known_hosts
           printf "%s" "$SSH_KEY" > ~/.ssh/key
           chmod 600 ~/.ssh/key
+          ssh-keygen -p -f ~/.ssh/key -m PEM
 
       - name: SSH into Remote Server and Deploy
         run: |

@@ -92,7 +92,7 @@ jobs:
           compression: xz
       - name: (Setup) Add hosts to /etc/hosts
         run: |
-          sudo echo "$(tailscale ip -4 $MACHINE) dev.groceries.filfreire-t480" | sudo tee -a /etc/hosts
+          sudo echo "100.126.226.107 dev.groceries.filfreire-t480" | sudo tee -a /etc/hosts
 
       - run: curl -L dev.groceries.filfreire-t480/health
 

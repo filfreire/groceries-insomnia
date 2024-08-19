@@ -9,4 +9,4 @@ docker-build:
 	docker build -t groceries-app .
 
 docker-run:
-	docker run -d -p 5000:5000 groceries-app
+	docker run -d --name groceries-app -p 5000:5000 groceries-app

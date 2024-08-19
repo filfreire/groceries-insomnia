@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   groceries-app:
-    image: groceries-app:latest
+    image: ghcr.io/filfreire/groceries-insomnia:latest
     container_name: groceries-app
     ports:
       - "5000:5000"

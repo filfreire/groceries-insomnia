@@ -10,3 +10,6 @@ docker-build:
 
 docker-run:
 	docker run -d --name groceries-app -p 5000:5000 groceries-app
+
+docker-run-image:
+	docker run -d --name groceries-app -p 5000:5000 ghcr.io/filfreire/groceries-insomnia:latest

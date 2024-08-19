@@ -36,5 +36,9 @@ def debug_clear_all():
     groceries.clear()
     return jsonify({'message': 'Debug all groceries deleted successfully'})
 
+@app.route('/health', methods=['GET'])
+def debug_health():
+    return jsonify({'message': 'server is running'})
+
 if __name__ == '__main__':
     app.run(debug=True)

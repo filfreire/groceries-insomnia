@@ -62,6 +62,12 @@ jobs:
           printf "%s" "$SSH_KEY" > ~/.ssh/key
           chmod 600 ~/.ssh/key
           sudo apt-get install sshpass
+
+      - name: Add hosts to /etc/hosts
+        run: |
+          MACHINE_IP="$(tailscale ip -6 $MACHINE)"
+          sudo echo "$MACHINE_IP dev.groceries.filfreire-t480" | sudo tee -a /etc/hosts
+
       - name: SSH into Remote Server and Deploy
         run: |
             sshpass -p '${{ secrets.PSWD }}' ssh -v -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<'ENDSSH'

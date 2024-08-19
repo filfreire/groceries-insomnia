@@ -11,3 +11,15 @@ services:
       update_config:
         order: start-first
     pull_policy: always
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    environment:
+      - DOMAIN=dev.groceries.filfreire-t480
+    depends_on:
+      - groceries-app

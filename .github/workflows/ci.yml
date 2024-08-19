@@ -92,7 +92,9 @@ jobs:
           compression: xz
       - name: (Setup) Add hosts to /etc/hosts
         run: |
-          MACHINE_IP="$(tailscale ip -4 $MACHINE)"
-          sudo echo "$MACHINE_IP dev.groceries.filfreire-t480" | sudo tee -a /etc/hosts
+          sudo echo "$(tailscale ip -4 $MACHINE) dev.groceries.filfreire-t480" | sudo tee -a /etc/hosts
+
+      - run: curl -L dev.groceries.filfreire-t480/health
+
       - name: Run test suites
         run: inso run test -w insomnia-workspace.yaml "Sanity checks" --env Dev --ci

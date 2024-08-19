@@ -1,11 +1,50 @@
 _type: export
 __export_format: 4
-__export_date: 2024-05-15T12:53:46.817Z
-__export_source: insomnia.desktop.app:v9.2.0-beta.0
+__export_date: 2024-08-19T11:41:45.709Z
+__export_source: insomnia.desktop.app:v9.3.3-a359742.0
 resources:
-  - _id: req_b065e15df653467db8ba8b1754a16738
-    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
-    modified: 1715679555899
+  - _id: req_f74a06ac9fb64aeebac75f53d2b99151
+    parentId: wrk_8dad143703a04c918b8199f5c2e36210
+    modified: 1723829646597
+    created: 1723829598433
+    url: "{{ _.base_url }}/get_token"
+    name: Get Auth Token
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1723829565106
+    isPrivate: false
+    pathParameters: []
+    afterResponseScript: |
+      
+      insomnia.test('Check if status is 200', () => {
+          insomnia.expect(insomnia.response.code).to.eql(200);
+      });
+
+      const jsonBody = insomnia.response.json();
+      insomnia.environment.set("auth_token", jsonBody.token);
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_8dad143703a04c918b8199f5c2e36210
+    parentId: null
+    modified: 1723819958806
+    created: 1723819958806
+    name: Grocery API Spec
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_370baa3846f2477984b55ec67edabffe
+    parentId: fld_541631c127774f76a826f7c85fe72987
+    modified: 1723829664739
     created: 1715679555899
     url: "{{ _.base_url }}/delete_grocery"
     name: Delete a grocery from the list
@@ -17,14 +56,14 @@ resources:
         {
           "grocery": "string"
         }
-    preRequestScript: ""
     parameters: []
     headers:
-      - name: Content-Type
-        disabled: false
+      - disabled: false
+        name: Content-Type
         value: application/json
     authentication: {}
-    metaSortKey: -1715679555899
+    preRequestScript: ""
+    metaSortKey: -1723829651092
     isPrivate: false
     pathParameters: []
     settingStoreCookies: true
@@ -34,30 +73,47 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: wrk_3e06178292a942b29a9d91b22de0cd61
-    parentId: null
-    modified: 1715679491227
-    created: 1715679491227
-    name: Grocery API Spec
+  - _id: fld_541631c127774f76a826f7c85fe72987
+    parentId: wrk_8dad143703a04c918b8199f5c2e36210
+    modified: 1723829590917
+    created: 1723829565006
+    name: API Requests
     description: ""
-    scope: design
-    _type: workspace
-  - _id: req_e45190736e9549a3957478cea5670215
-    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
-    modified: 1715679555898
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1723829565006
+    authentication:
+      type: apikey
+      disabled: false
+      key: Authorization
+      value: "{{auth_token}}"
+      addTo: header
+    _type: request_group
+  - _id: req_f8efd7b0358d47b4aee02a5a33235dee
+    parentId: fld_541631c127774f76a826f7c85fe72987
+    modified: 1723829656820
     created: 1715679555898
     url: "{{ _.base_url }}/get_groceries"
     name: Get the list of groceries
     description: ""
     method: GET
     body: {}
-    preRequestScript: ""
     parameters: []
     headers: []
     authentication: {}
-    metaSortKey: -1715679555898
+    preRequestScript: ""
+    metaSortKey: -1723829650892
     isPrivate: false
     pathParameters: []
+    afterResponseScript: |
+      insomnia.test('Check if status is 200', () => {
+          insomnia.expect(insomnia.response.code).to.eql(200);
+      });
+
+      insomnia.test('Check there are groceries on the list', () => {
+      	const jsonBody = insomnia.response.json();
+          insomnia.expect(jsonBody.groceries).to.not.eql([]);
+      });
     settingStoreCookies: true
     settingSendCookies: true
     settingDisableRenderRequestBody: false
@@ -65,9 +121,45 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_d08e877ba2bc4c29a29072970126cb75
-    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
-    modified: 1715704377543
+  - _id: req_34cfbe0c38064b24a21fba417a38c25d
+    parentId: fld_541631c127774f76a826f7c85fe72987
+    modified: 1724066932697
+    created: 1715703908238
+    url: "{{ _.base_url }}/add_grocery"
+    name: Add a grocery (invalid)
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        }
+    parameters: []
+    headers:
+      - disabled: false
+        name: Content-Type
+        value: application/json
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1723829650792
+    isPrivate: false
+    pathParameters: []
+    afterResponseScript: |+
+      
+      insomnia.test('Check if status is 400', () => {
+          insomnia.expect(insomnia.response.code).to.eql(400);
+      });
+
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_67d592157c524661830ef931f1906894
+    parentId: fld_541631c127774f76a826f7c85fe72987
+    modified: 1723829650730
     created: 1715679555896
     url: "{{ _.base_url }}/add_grocery"
     name: Add a grocery to the list
@@ -79,16 +171,22 @@ resources:
         {
           "grocery": "{{ _.product }}"
         }
-    preRequestScript: ""
     parameters: []
     headers:
-      - name: Content-Type
-        disabled: false
+      - disabled: false
+        name: Content-Type
         value: application/json
     authentication: {}
-    metaSortKey: -1715679555896
+    preRequestScript: ""
+    metaSortKey: -1723829650692
     isPrivate: false
     pathParameters: []
+    afterResponseScript: |+
+      
+      insomnia.test('Check if status is 200', () => {
+          insomnia.expect(insomnia.response.code).to.eql(200);
+      });
+
     settingStoreCookies: true
     settingSendCookies: true
     settingDisableRenderRequestBody: false
@@ -96,29 +194,29 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_97e01d035f054b4284a4efb8c1b8b42f
-    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
-    modified: 1715703914578
-    created: 1715703908238
-    url: "{{ _.base_url }}/add_grocery"
-    name: Add a grocery to the list (invalid)
+  - _id: req_97d457764d0641f2a036bfc5bae2ea67
+    parentId: fld_541631c127774f76a826f7c85fe72987
+    modified: 1724066945170
+    created: 1723821933816
+    url: "{{ _.base_url }}/clear_all"
+    name: "[Debug] Clear all groceries"
     description: ""
-    method: POST
-    body:
-      mimeType: application/json
-      text: |-
-        {
-        }
-    preRequestScript: ""
+    method: GET
+    body: {}
     parameters: []
     headers:
-      - name: Content-Type
-        disabled: false
-        value: application/json
+      - name: User-Agent
+        value: insomnia/9.3.3-a359742.0
     authentication: {}
-    metaSortKey: -1715679019146
+    metaSortKey: -1723829650592
     isPrivate: false
     pathParameters: []
+    afterResponseScript: |+
+      
+      insomnia.test('Check if status is 200', () => {
+          insomnia.expect(insomnia.response.code).to.eql(200);
+      });
+
     settingStoreCookies: true
     settingSendCookies: true
     settingDisableRenderRequestBody: false
@@ -126,9 +224,9 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: env_3edf38c4494798454d0603c19675031d50ba228f
-    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
-    modified: 1715679658837
+  - _id: env_ed268a8ad6184a3abdacd25c799f0dca
+    parentId: wrk_8dad143703a04c918b8199f5c2e36210
+    modified: 1724066932910
     created: 1715679491229
     name: Base Environment
     data:
@@ -140,22 +238,26 @@ resources:
     isPrivate: false
     metaSortKey: 1715679491229
     _type: environment
-  - _id: jar_3edf38c4494798454d0603c19675031d50ba228f
-    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
-    modified: 1715679491229
+  - _id: jar_7abf8a3e098946f88877cd252670ebf3
+    parentId: wrk_8dad143703a04c918b8199f5c2e36210
+    modified: 1724066932909
     created: 1715679491229
     name: Default Jar
     cookies: []
     _type: cookie_jar
-  - _id: spc_c3c45799cf0846d29cf84f74eece0c35
-    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
-    modified: 1715696603739
-    created: 1715679491228
+  - _id: spc_1cf80052703f4a569367c27a81671226
+    parentId: wrk_8dad143703a04c918b8199f5c2e36210
+    modified: 1724066793792
+    created: 1723819958807
     fileName: Grocery API Spec
     contents: |
       openapi: 3.1.0
       servers:
-        - url: localhost:5000
+        - url: http://localhost:5000
+          description: Local
+        - url: http://filfreire-t480:5000
+          description: Staging
+
       tags:  
         - name: test
           description: just a test tag
@@ -220,100 +322,123 @@ resources:
                 description: Grocery not found
     contentType: yaml
     _type: api_spec
-  - _id: uts_09eb0d3a9a5242788c071b81aad374fc
-    parentId: wrk_3e06178292a942b29a9d91b22de0cd61
+  - _id: uts_f98feda720c84cbebe0b0b8d970a1a81
+    parentId: wrk_8dad143703a04c918b8199f5c2e36210
     modified: 1715680065334
     created: 1715680011042
     name: Sanity checks
     metaSortKey: -1715680011042
     _type: unit_test_suite
-  - _id: env_06e54cc47ba94368b0c0b7440c27350b
-    parentId: env_3edf38c4494798454d0603c19675031d50ba228f
-    modified: 1715679555894
-    created: 1715679555894
-    name: OpenAPI env example.com
-    data:
-      scheme: http
-      base_path: ""
-      host: example.com
-    dataPropertyOrder: null
-    color: null
-    isPrivate: false
-    metaSortKey: 1715679555894
-    _type: environment
-  - _id: env_8945eca7df8049dbaba7b4b3123521de
-    parentId: env_3edf38c4494798454d0603c19675031d50ba228f
-    modified: 1715704363379
+  - _id: env_ab896688a709420f86c6331b9f732171
+    parentId: env_ed268a8ad6184a3abdacd25c799f0dca
+    modified: 1724066860733
     created: 1715679568515
     name: Local
     data:
-      scheme: http
       base_path: ""
       host: localhost:5000
+      last_grocery: Shirt
       product: "{% faker 'randomProduct' %}"
+      scheme: http
+      variable_name: variable_value
+      auth_token: 38af1702-1e9b-4997-a136-fb874253a255
     dataPropertyOrder:
       "&":
-        - scheme
         - base_path
         - host
+        - last_grocery
         - product
+        - scheme
+        - variable_name
+        - auth_token
     color: null
     isPrivate: false
     metaSortKey: 1715679568515
     _type: environment
-  - _id: env_c7ed81d9042845618544d157bbcdef2c
-    parentId: env_3edf38c4494798454d0603c19675031d50ba228f
-    modified: 1715704227560
+  - _id: env_920c530d2c8440379647bba923314aca
+    parentId: env_ed268a8ad6184a3abdacd25c799f0dca
+    modified: 1724066932910
     created: 1715704219027
     name: Production
     data:
-      scheme: http
       base_path: ""
-      host: localhost:5000
+      host: filfreire-t480:5000
+      last_grocery: Shirt
+      product: "{% faker 'randomProduct' %}"
+      scheme: http
+      variable_name: variable_value
+      auth_token: 38af1702-1e9b-4997-a136-fb874253a255
     dataPropertyOrder:
       "&":
-        - scheme
         - base_path
         - host
+        - last_grocery
+        - product
+        - scheme
+        - variable_name
+        - auth_token
     color: null
     isPrivate: false
     metaSortKey: 1715704219027
     _type: environment
-  - _id: env_0e23b59bf81045909a1c7ca3479d91b7
-    parentId: env_3edf38c4494798454d0603c19675031d50ba228f
-    modified: 1715704816119
+  - _id: env_84942e105a8445ae85c136349cccb359
+    parentId: env_ed268a8ad6184a3abdacd25c799f0dca
+    modified: 1724067696654
     created: 1715704810625
-    name: Staging
-    data: {}
-    dataPropertyOrder: null
+    name: Dev
+    data:
+      base_path: ""
+      host: filfreire-t480:5000
+      last_grocery: Shirt
+      product: "{% faker 'randomProduct' %}"
+      scheme: http
+      variable_name: variable_value
+      auth_token: 38af1702-1e9b-4997-a136-fb874253a255
+    dataPropertyOrder:
+      "&":
+        - base_path
+        - host
+        - last_grocery
+        - product
+        - scheme
+        - variable_name
+        - auth_token
     color: null
     isPrivate: false
     metaSortKey: 1715704810625
     _type: environment
-  - _id: ut_44d88c02476f43a0845373f678304e63
-    parentId: uts_09eb0d3a9a5242788c071b81aad374fc
-    modified: 1715680090729
+  - _id: ut_acbbb698aef24c83a598552fa4032300
+    parentId: uts_f98feda720c84cbebe0b0b8d970a1a81
+    modified: 1724067481347
     created: 1715680014759
-    requestId: req_d08e877ba2bc4c29a29072970126cb75
-    name: We should not be able to re-add the same grocery item
+    requestId: req_67d592157c524661830ef931f1906894
+    name: We should be able to add a grocery item
     code: |-
       
 
       const response1 = await insomnia.send();
       expect(response1.status).to.equal(200);
-
-      const response2 = await insomnia.send();
-      expect(response2.status).to.equal(400);
-    metaSortKey: -1715680014759
+    metaSortKey: -1715691930942
     _type: unit_test
-  - _id: ut_87375e3e67ca4568b89f06e1a09a9669
-    parentId: uts_09eb0d3a9a5242788c071b81aad374fc
+  - _id: ut_f44658817aa04147a9a5c692ae91dc37
+    parentId: uts_f98feda720c84cbebe0b0b8d970a1a81
     modified: 1715703932060
     created: 1715703847125
-    requestId: req_97e01d035f054b4284a4efb8c1b8b42f
+    requestId: req_34cfbe0c38064b24a21fba417a38c25d
     name: We should not be able to add invalid groceries
     code: |-
       const response1 = await insomnia.send();
       expect(response1.status).to.equal(400);
     metaSortKey: -1715703847125
+    _type: unit_test
+  - _id: ut_64d69d640fad4f57a8fbbcae04eb9ce6
+    parentId: uts_f98feda720c84cbebe0b0b8d970a1a81
+    modified: 1724067506789
+    created: 1724067491344
+    requestId: req_97d457764d0641f2a036bfc5bae2ea67
+    name: We can clear grocery list
+    code: |-
+      const response1 = await insomnia.send();
+      expect(response1.status).to.equal(200);
+    metaSortKey: -1724067491344
     _type: unit_test

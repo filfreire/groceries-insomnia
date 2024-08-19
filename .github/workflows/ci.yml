@@ -40,7 +40,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    name: Deploy groceries-app to dev
+    name: Deploy to Dev
     if: github.ref == 'refs/heads/main'
     env:
       MACHINE: ${{ secrets.REMOTE_HOST }}
@@ -62,7 +62,6 @@ jobs:
           printf "%s" "$SSH_KEY" > ~/.ssh/key
           chmod 600 ~/.ssh/key
           sudo apt-get install sshpass
-
       - name: SSH into Remote Server and Deploy
         run: |
             sshpass -p '${{ secrets.PSWD }}' ssh -v -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<'ENDSSH'
@@ -70,3 +69,22 @@ jobs:
             git pull --rebase
             docker-compose pull && docker-compose up -d
             ENDSSH
+
+  test:
+    name: Test (using insomnia exported .yaml file)
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+      - name: Setup Tailscale
+        id: tailscale
+        uses: tailscale/github-action@main
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+          tags: tag:ci
+      - uses: kong/setup-inso@v1
+        with:
+          inso-version: 9.3.4-beta.1
+      - name: Run test suites
+        run: inso run test -w insomnia-workspace.yaml "Sanity checks" --env Dev --ci

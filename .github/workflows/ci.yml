@@ -67,7 +67,7 @@ jobs:
             sshpass -p '${{ secrets.PSWD }}' ssh -v -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<'ENDSSH'
             cd ${{ secrets.DEPLOY_PATH }}
             git pull --rebase
-            docker-compose pull && docker-compose up -d
+            docker compose pull && docker compose up -d --force-recreate
             ENDSSH
 
   test:

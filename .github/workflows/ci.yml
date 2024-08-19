@@ -66,6 +66,6 @@ jobs:
       - name: SSH into Remote Server and Deploy
         run: |
             sshpass -p '${{ secrets.PSWD }}' ssh -v -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<'ENDSSH'
-            cd {{ secrets.DEPLOY_PATH }}
+            cd ${{ secrets.DEPLOY_PATH }}
             docker-compose pull && docker-compose up -d
             ENDSSH

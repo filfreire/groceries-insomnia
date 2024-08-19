@@ -1,0 +1,31 @@
+_id: req_97d457764d0641f2a036bfc5bae2ea67
+type: Request
+parentId: fld_541631c127774f76a826f7c85fe72987
+modified: 1724070945760
+created: 1723821933816
+url: "{{ _.base_url }}/clear_all"
+name: "[Debug] Clear all groceries"
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - name: User-Agent
+    value: insomnia/9.3.3-a359742.0
+authentication: {}
+preRequestScript: null
+metaSortKey: -1723829650592
+isPrivate: false
+pathParameters: []
+afterResponseScript: |+
+  
+  insomnia.test('Check if status is 200', () => {
+      insomnia.expect(insomnia.response.code).to.eql(200);
+  });
+
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

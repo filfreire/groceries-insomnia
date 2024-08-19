@@ -1,0 +1,35 @@
+_id: req_f74a06ac9fb64aeebac75f53d2b99151
+type: Request
+parentId: wrk_8dad143703a04c918b8199f5c2e36210
+modified: 1724071163633
+created: 1723829598433
+url: "{{ _.base_url }}/get_token"
+name: Get Auth Token
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+preRequestScript: ""
+metaSortKey: -1723829565106
+isPrivate: false
+pathParameters: []
+afterResponseScript: |+
+  
+  insomnia.test('Check if status is 200', () => {
+      insomnia.expect(insomnia.response.code).to.eql(200);
+  	
+  		if (insomnia.response.code){
+  			const jsonBody = insomnia.response.json();
+  			insomnia.environment.set("auth_token", jsonBody.token);
+  		}
+  });
+
+
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

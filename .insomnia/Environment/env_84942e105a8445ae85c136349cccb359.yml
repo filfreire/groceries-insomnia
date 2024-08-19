@@ -1,0 +1,26 @@
+_id: env_84942e105a8445ae85c136349cccb359
+type: Environment
+parentId: env_ed268a8ad6184a3abdacd25c799f0dca
+modified: 1724071073750
+created: 1715704810625
+name: Dev
+data:
+  auth_token: 38af1702-1e9b-4997-a136-fb874253a255
+  base_path: ""
+  host: filfreire-t480:5000
+  last_grocery: Shirt
+  product: "{% faker 'randomProduct' %}"
+  scheme: http
+  variable_name: variable_value
+dataPropertyOrder:
+  "&":
+    - auth_token
+    - base_path
+    - host
+    - last_grocery
+    - product
+    - scheme
+    - variable_name
+color: "#00ff04"
+isPrivate: false
+metaSortKey: 1715704810625

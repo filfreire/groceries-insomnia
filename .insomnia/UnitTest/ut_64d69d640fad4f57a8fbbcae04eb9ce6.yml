@@ -1,0 +1,11 @@
+_id: ut_64d69d640fad4f57a8fbbcae04eb9ce6
+type: UnitTest
+parentId: uts_f98feda720c84cbebe0b0b8d970a1a81
+modified: 1724070945760
+created: 1724067491344
+requestId: req_97d457764d0641f2a036bfc5bae2ea67
+name: We can clear grocery list
+code: |-
+  const response1 = await insomnia.send();
+  expect(response1.status).to.equal(200);
+metaSortKey: -1724067491344

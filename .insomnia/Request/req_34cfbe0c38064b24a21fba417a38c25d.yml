@@ -1,0 +1,36 @@
+_id: req_34cfbe0c38064b24a21fba417a38c25d
+type: Request
+parentId: fld_541631c127774f76a826f7c85fe72987
+modified: 1724070945760
+created: 1715703908238
+url: "{{ _.base_url }}/add_grocery"
+name: Add a grocery (invalid)
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    }
+parameters: []
+headers:
+  - disabled: false
+    name: Content-Type
+    value: application/json
+authentication: {}
+preRequestScript: ""
+metaSortKey: -1723829650792
+isPrivate: false
+pathParameters: []
+afterResponseScript: |+
+  
+  insomnia.test('Check if status is 400', () => {
+      insomnia.expect(insomnia.response.code).to.eql(400);
+  });
+
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

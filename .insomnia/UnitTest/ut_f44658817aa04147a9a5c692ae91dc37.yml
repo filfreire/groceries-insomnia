@@ -1,0 +1,11 @@
+_id: ut_f44658817aa04147a9a5c692ae91dc37
+type: UnitTest
+parentId: uts_f98feda720c84cbebe0b0b8d970a1a81
+modified: 1724070945760
+created: 1715703847125
+requestId: req_34cfbe0c38064b24a21fba417a38c25d
+name: We should not be able to add invalid groceries
+code: |-
+  const response1 = await insomnia.send();
+  expect(response1.status).to.equal(400);
+metaSortKey: -1715703847125

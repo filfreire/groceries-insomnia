@@ -63,5 +63,5 @@ jobs:
 
       - name: SSH into Remote Server and Deploy
         run: |
-            ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} \
+            ssh -i ~/.ssh/key -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} \
             "cd {{ secrets.DEPLOY_PATH }} && docker-compose pull && docker-compose up -d"

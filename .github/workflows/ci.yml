@@ -85,9 +85,9 @@ jobs:
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
           tags: tag:ci
-      - uses: kong/setup-inso@v1
+      - uses: kong/setup-inso@v1.1.6
         with:
           inso-version: 9.3.4-beta.1
-          compression: xJ
+          compression: xz
       - name: Run test suites
         run: inso run test -w insomnia-workspace.yaml "Sanity checks" --env Dev --ci

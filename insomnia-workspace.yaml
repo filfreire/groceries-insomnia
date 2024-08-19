@@ -1,43 +1,11 @@
 _type: export
 __export_format: 4
-__export_date: 2024-08-19T13:05:21.011Z
+__export_date: 2024-08-19T13:34:15.782Z
 __export_source: insomnia.desktop.app:v9.3.3-a359742.0
 resources:
-  - _id: req_d0c912d9f79343f3be12552f523186f7
-    parentId: wrk_8dad143703a04c918b8199f5c2e36210
-    modified: 1724072603826
-    created: 1724072573533
-    url: "{{base_url}}/health"
-    name: Health
-    description: ""
-    method: GET
-    body: {}
-    parameters: []
-    headers:
-      - name: User-Agent
-        value: insomnia/9.3.3-a359742.0
-    authentication: {}
-    metaSortKey: -1724072573533
-    isPrivate: false
-    pathParameters: []
-    settingStoreCookies: true
-    settingSendCookies: true
-    settingDisableRenderRequestBody: false
-    settingEncodeUrl: true
-    settingRebuildPath: true
-    settingFollowRedirects: global
-    _type: request
-  - _id: wrk_8dad143703a04c918b8199f5c2e36210
-    parentId: null
-    modified: 1723819958806
-    created: 1723819958806
-    name: Grocery API Spec
-    description: ""
-    scope: design
-    _type: workspace
   - _id: req_f74a06ac9fb64aeebac75f53d2b99151
-    parentId: wrk_8dad143703a04c918b8199f5c2e36210
-    modified: 1724072209875
+    parentId: fld_d5a0c1f20b4c4e64b416dae912e1e7cc
+    modified: 1724074341868
     created: 1723829598433
     url: "{{ _.base_url }}/get_token"
     name: Get Auth Token
@@ -48,7 +16,7 @@ resources:
     headers: []
     authentication: {}
     preRequestScript: ""
-    metaSortKey: -1723829565106
+    metaSortKey: -1724074217415
     isPrivate: false
     pathParameters: []
     afterResponseScript: |+
@@ -70,9 +38,95 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
+  - _id: fld_d5a0c1f20b4c4e64b416dae912e1e7cc
+    parentId: wrk_8dad143703a04c918b8199f5c2e36210
+    modified: 1724074224232
+    created: 1724074214151
+    name: API
+    description: >
+      # groceries-insomnia
+
+
+      Example Demo for tinkering with Insomnia API Client
+
+
+      [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Groceries%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2Ffilfreire%2Fgroceries-insomnia%2Fmain%2Finsomnia-workspace.yaml)
+
+
+      ## Setup
+
+
+      - Install Python (e.g. version 3.11)
+
+      - Run `make install dev`.
+
+
+      ### Docker setup
+
+
+      - Install Docker
+
+      - Run `make docker-build docker-run`.
+
+
+      ## Running in Docker
+
+
+      Run on terminal:
+
+
+      ```bash
+
+      docker run -d --name groceries-app -p 5000:5000 ghcr.io/filfreire/groceries-insomnia:latest
+
+      ```
+
+
+      ## Side-notes
+
+
+      - Code used on <https://www.youtube.com/watch?v=30vI6Oq865s>
+
+      - Code used on [API Summit 2024 Insomnia presentation](https://konghq.com/events/conferences/api-summit/agenda)
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1724074214151
+    _type: request_group
+  - _id: wrk_8dad143703a04c918b8199f5c2e36210
+    parentId: null
+    modified: 1724070945760
+    created: 1723819958806
+    name: Grocery API Spec
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_d0c912d9f79343f3be12552f523186f7
+    parentId: fld_d5a0c1f20b4c4e64b416dae912e1e7cc
+    modified: 1724074219791
+    created: 1724072573533
+    url: "{{base_url}}/health"
+    name: Health
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.3.3-a359742.0
+    authentication: {}
+    metaSortKey: -1724074217315
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_370baa3846f2477984b55ec67edabffe
     parentId: fld_541631c127774f76a826f7c85fe72987
-    modified: 1723829664739
+    modified: 1724070945760
     created: 1715679555899
     url: "{{ _.base_url }}/delete_grocery"
     name: Delete a grocery from the list
@@ -94,6 +148,7 @@ resources:
     metaSortKey: -1723829651092
     isPrivate: false
     pathParameters: []
+    afterResponseScript: null
     settingStoreCookies: true
     settingSendCookies: true
     settingDisableRenderRequestBody: false
@@ -103,23 +158,26 @@ resources:
     _type: request
   - _id: fld_541631c127774f76a826f7c85fe72987
     parentId: wrk_8dad143703a04c918b8199f5c2e36210
-    modified: 1723829590917
+    modified: 1724070945760
     created: 1723829565006
     name: API Requests
     description: ""
     environment: {}
     environmentPropertyOrder: null
     metaSortKey: -1723829565006
+    preRequestScript: null
+    afterResponseScript: null
     authentication:
-      type: apikey
+      addTo: header
       disabled: false
       key: Authorization
+      type: apikey
       value: "{{auth_token}}"
-      addTo: header
+    headers: null
     _type: request_group
   - _id: req_f8efd7b0358d47b4aee02a5a33235dee
     parentId: fld_541631c127774f76a826f7c85fe72987
-    modified: 1723829656820
+    modified: 1724070945760
     created: 1715679555898
     url: "{{ _.base_url }}/get_groceries"
     name: Get the list of groceries
@@ -151,7 +209,7 @@ resources:
     _type: request
   - _id: req_34cfbe0c38064b24a21fba417a38c25d
     parentId: fld_541631c127774f76a826f7c85fe72987
-    modified: 1724066932697
+    modified: 1724070945760
     created: 1715703908238
     url: "{{ _.base_url }}/add_grocery"
     name: Add a grocery (invalid)
@@ -187,7 +245,7 @@ resources:
     _type: request
   - _id: req_67d592157c524661830ef931f1906894
     parentId: fld_541631c127774f76a826f7c85fe72987
-    modified: 1723829650730
+    modified: 1724070945760
     created: 1715679555896
     url: "{{ _.base_url }}/add_grocery"
     name: Add a grocery to the list
@@ -224,7 +282,7 @@ resources:
     _type: request
   - _id: req_97d457764d0641f2a036bfc5bae2ea67
     parentId: fld_541631c127774f76a826f7c85fe72987
-    modified: 1724066945170
+    modified: 1724070945760
     created: 1723821933816
     url: "{{ _.base_url }}/clear_all"
     name: "[Debug] Clear all groceries"
@@ -236,6 +294,7 @@ resources:
       - name: User-Agent
         value: insomnia/9.3.3-a359742.0
     authentication: {}
+    preRequestScript: null
     metaSortKey: -1723829650592
     isPrivate: false
     pathParameters: []
@@ -254,7 +313,7 @@ resources:
     _type: request
   - _id: env_ed268a8ad6184a3abdacd25c799f0dca
     parentId: wrk_8dad143703a04c918b8199f5c2e36210
-    modified: 1724072507045
+    modified: 1724071164880
     created: 1715679491229
     name: Base Environment
     data:
@@ -275,7 +334,7 @@ resources:
     _type: cookie_jar
   - _id: spc_1cf80052703f4a569367c27a81671226
     parentId: wrk_8dad143703a04c918b8199f5c2e36210
-    modified: 1724066793792
+    modified: 1724070945760
     created: 1723819958807
     fileName: Grocery API Spec
     contents: |
@@ -352,14 +411,14 @@ resources:
     _type: api_spec
   - _id: uts_f98feda720c84cbebe0b0b8d970a1a81
     parentId: wrk_8dad143703a04c918b8199f5c2e36210
-    modified: 1715680065334
+    modified: 1724070945760
     created: 1715680011042
     name: Sanity checks
     metaSortKey: -1715680011042
     _type: unit_test_suite
   - _id: env_ab896688a709420f86c6331b9f732171
     parentId: env_ed268a8ad6184a3abdacd25c799f0dca
-    modified: 1724072209875
+    modified: 1724071164879
     created: 1715679568515
     name: Local
     data:
@@ -385,12 +444,12 @@ resources:
     _type: environment
   - _id: env_920c530d2c8440379647bba923314aca
     parentId: env_ed268a8ad6184a3abdacd25c799f0dca
-    modified: 1724072239353
+    modified: 1724074405989
     created: 1715704219027
     name: Production
     data:
       base_path: ""
-      host: REPLACEME
+      host: CHANGEME
       last_grocery: Shirt
       product: "{% faker 'randomProduct' %}"
       scheme: http
@@ -411,7 +470,7 @@ resources:
     _type: environment
   - _id: env_84942e105a8445ae85c136349cccb359
     parentId: env_ed268a8ad6184a3abdacd25c799f0dca
-    modified: 1724072507045
+    modified: 1724074374155
     created: 1715704810625
     name: Dev
     data:
@@ -437,7 +496,7 @@ resources:
     _type: environment
   - _id: ut_acbbb698aef24c83a598552fa4032300
     parentId: uts_f98feda720c84cbebe0b0b8d970a1a81
-    modified: 1724067481347
+    modified: 1724070945760
     created: 1715680014759
     requestId: req_67d592157c524661830ef931f1906894
     name: We should be able to add a grocery item
@@ -450,7 +509,7 @@ resources:
     _type: unit_test
   - _id: ut_f44658817aa04147a9a5c692ae91dc37
     parentId: uts_f98feda720c84cbebe0b0b8d970a1a81
-    modified: 1715703932060
+    modified: 1724070945760
     created: 1715703847125
     requestId: req_34cfbe0c38064b24a21fba417a38c25d
     name: We should not be able to add invalid groceries
@@ -461,7 +520,7 @@ resources:
     _type: unit_test
   - _id: ut_64d69d640fad4f57a8fbbcae04eb9ce6
     parentId: uts_f98feda720c84cbebe0b0b8d970a1a81
-    modified: 1724067506789
+    modified: 1724070945760
     created: 1724067491344
     requestId: req_97d457764d0641f2a036bfc5bae2ea67
     name: We can clear grocery list

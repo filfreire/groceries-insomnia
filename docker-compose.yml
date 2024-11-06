@@ -1,11 +1,11 @@
 version: '3.8'
 
 services:
-  groceries-app:
-    image: ghcr.io/filfreire/groceries-insomnia:latest
-    container_name: groceries-app
+  articles-app:
+    image: ghcr.io/filfreire/articles-insomnia:latest
+    container_name: articles-app
     ports:
-      - "5000:5000"
+      - "3000:3000"
     restart: always
     deploy:
       update_config:
@@ -20,6 +20,6 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     environment:
-      - DOMAIN=groceries.filfreire-t480
+      - DOMAIN=articles.filfreire-t480
     depends_on:
-      - groceries-app
+      - articles-app

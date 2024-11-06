@@ -1,23 +1,24 @@
 openapi: 3.1.0
 servers:
-  - url: localhost:5000
-tags:  
+  - url: http://localhost:3000
+  - url: http://articles.filfreire-t480
+tags:
   - name: test
     description: just a test tag
 info:
-  title: Grocery API
+  title: articles API
   version: 1.0.0
-  description: An API to manage a list of groceries
+  description: An API to manage a list of scientific articles
   contact:
     email: noreply@insomnia.rest
 paths:
-  /add_grocery:
+  /add_article:
     post:
-      operationId: add_grocery
-      tags: 
+      operationId: add_article
+      tags:
         - test
-      summary: Add a grocery to the list
-      description: Add a grocery to the list
+      summary: Add a article to the list
+      description: Add a article to the list
       requestBody:
         required: true
         content:
@@ -25,29 +26,29 @@ paths:
             schema:
               type: object
               properties:
-                grocery:
+                article:
                   type: string
       responses:
         '200':
-          description: Grocery added successfully
+          description: article added successfully
         '400':
-          description: Grocery already exists
-  /get_groceries:
+          description: article already exists
+  /get_articles:
     get:
-      summary: Get the list of groceries
-      description: Get the list of groceries
-      operationId: get_groceries
-      tags: 
+      summary: Get the list of articles
+      description: Get the list of articles
+      operationId: get_articles
+      tags:
         - test
       responses:
         '200':
-          description: List of groceries retrieved successfully
-  /delete_grocery:
+          description: List of articles retrieved successfully
+  /delete_article:
     delete:
-      summary: Delete a grocery from the list
-      description: Delete a grocery from the list
-      operationId: delete_grocery
-      tags: 
+      summary: Delete a article from the list
+      description: Delete a article from the list
+      operationId: delete_article
+      tags:
         - test
       requestBody:
         required: true
@@ -56,11 +57,11 @@ paths:
             schema:
               type: object
               properties:
-                grocery:
+                article:
                   type: string
       responses:
         '200':
-          description: Grocery deleted successfully
+          description: article deleted successfully
         '404':
-          description: Grocery not found
+          description: article not found
 

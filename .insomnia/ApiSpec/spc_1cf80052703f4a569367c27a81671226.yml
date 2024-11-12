@@ -1,7 +1,7 @@
 _id: spc_1cf80052703f4a569367c27a81671226
 type: ApiSpec
 parentId: wrk_8dad143703a04c918b8199f5c2e36210
-modified: 1724070945760
+modified: 1731421845347
 created: 1723819958807
 fileName: Grocery API Spec
 contents: |
@@ -11,6 +11,8 @@ contents: |
       description: Local
     - url: http://filfreire-t480:3000
       description: Staging
+    - url: https://groceries-demo.dev.insomnia.moe
+      description: Production
 
   tags:  
     - name: test

@@ -19,7 +19,7 @@ Example Demo for tinkering with Insomnia API Client
 Run on terminal:
 
 ```bash
-docker run -d --name groceries-app -p 5000:5000 ghcr.io/filfreire/groceries-insomnia:latest
+docker run -d --name groceries-app -p 3000:3000 ghcr.io/filfreire/groceries-insomnia:latest
 ```
 
 ## Side-notes

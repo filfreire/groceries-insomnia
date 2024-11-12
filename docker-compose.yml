@@ -5,7 +5,7 @@ services:
     image: ghcr.io/filfreire/groceries-insomnia:latest
     container_name: groceries-app
     ports:
-      - "5000:5000"
+      - "3000:3000"
     restart: always
     deploy:
       update_config:

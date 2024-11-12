@@ -1,6 +1,6 @@
 openapi: 3.1.0
 servers:
-  - url: localhost:5000
+  - url: localhost:3000
 tags:  
   - name: test
     description: just a test tag

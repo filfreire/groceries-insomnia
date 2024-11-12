@@ -9,7 +9,7 @@ docker-build:
 	docker build -t groceries-app .
 
 docker-run:
-	docker run -d --name groceries-app -p 5000:5000 groceries-app
+	docker run -d --name groceries-app -p 3000:3000 groceries-app
 
 docker-run-image:
-	docker run -d --name groceries-app -p 5000:5000 ghcr.io/filfreire/groceries-insomnia:latest
+	docker run -d --name groceries-app -p 3000:3000 ghcr.io/filfreire/groceries-insomnia:latest

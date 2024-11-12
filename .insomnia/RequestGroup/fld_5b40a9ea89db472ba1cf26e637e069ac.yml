@@ -1,0 +1,15 @@
+_id: fld_5b40a9ea89db472ba1cf26e637e069ac
+type: RequestGroup
+parentId: fld_5758bde283d047f6bf650a7f13ee2dc8
+modified: 1731417718793
+created: 1731417718793
+name: Adding multiple groceries works
+description: ""
+environment: {}
+environmentPropertyOrder: null
+metaSortKey: -1731417718793
+preRequestScript: null
+afterResponseScript: null
+authentication: null
+headers: null
+environmentType: kv

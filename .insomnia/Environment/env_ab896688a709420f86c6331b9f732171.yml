@@ -1,11 +1,11 @@
 _id: env_ab896688a709420f86c6331b9f732171
 type: Environment
 parentId: env_ed268a8ad6184a3abdacd25c799f0dca
-modified: 1724071164879
+modified: 1731418037702
 created: 1715679568515
 name: Local
 data:
-  auth_token: 38af1702-1e9b-4997-a136-fb874253a255
+  auth_token: a65ff4a6-5788-4ff9-87db-74df0985d228
   base_path: ""
   host: localhost:3000
   last_grocery: Shirt

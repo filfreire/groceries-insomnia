@@ -1,0 +1,37 @@
+_id: req_564b386a63d646bd90ccc93eb14dcdfb
+type: Request
+parentId: fld_5b40a9ea89db472ba1cf26e637e069ac
+modified: 1731418000036
+created: 1731417787113
+url: "{{ _.base_url }}/get_groceries"
+name: Get the list of groceries
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication:
+  type: apikey
+  disabled: false
+  key: Authorization
+  value: "{{auth_token}}"
+  addTo: header
+preRequestScript: ""
+metaSortKey: -1731417754008
+isPrivate: false
+pathParameters: []
+afterResponseScript: |
+  insomnia.test('Check if status is 200', () => {
+      insomnia.expect(insomnia.response.code).to.eql(200);
+  });
+
+  insomnia.test('Check there are groceries on the list', () => {
+  	const jsonBody = insomnia.response.json();
+      insomnia.expect(jsonBody.groceries).to.not.eql([]);
+  });
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

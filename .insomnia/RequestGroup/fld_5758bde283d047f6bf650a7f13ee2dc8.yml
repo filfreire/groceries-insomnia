@@ -1,0 +1,15 @@
+_id: fld_5758bde283d047f6bf650a7f13ee2dc8
+type: RequestGroup
+parentId: wrk_8dad143703a04c918b8199f5c2e36210
+modified: 1731417486565
+created: 1731417486565
+name: Health Checks
+description: ""
+environment: {}
+environmentPropertyOrder: null
+metaSortKey: -1731417486565
+preRequestScript: null
+afterResponseScript: null
+authentication: null
+headers: null
+environmentType: kv

@@ -1,0 +1,27 @@
+_id: req_6a759175d95b461eafad2e72f9470199
+type: Request
+parentId: fld_13b02cd43dcb46d4b68a66c259db0994
+modified: 1731417702827
+created: 1731417499293
+url: "{{ _.base_url }}/get_groceries"
+name: Get the list of groceries
+description: ""
+method: GET
+body: {}
+parameters: []
+headers: []
+authentication: {}
+preRequestScript: ""
+metaSortKey: -1731417702773
+isPrivate: false
+pathParameters: []
+afterResponseScript: |
+  insomnia.test('Check if status is 401, when no token is sent', () => {
+      insomnia.expect(insomnia.response.code).to.eql(401);
+  });
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

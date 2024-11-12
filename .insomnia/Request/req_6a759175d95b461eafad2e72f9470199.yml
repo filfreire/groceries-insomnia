@@ -1,7 +1,7 @@
 _id: req_6a759175d95b461eafad2e72f9470199
 type: Request
-parentId: fld_5758bde283d047f6bf650a7f13ee2dc8
-modified: 1731417524061
+parentId: fld_13b02cd43dcb46d4b68a66c259db0994
+modified: 1731417702827
 created: 1731417499293
 url: "{{ _.base_url }}/get_groceries"
 name: Get the list of groceries
@@ -12,7 +12,7 @@ parameters: []
 headers: []
 authentication: {}
 preRequestScript: ""
-metaSortKey: -1731417501531
+metaSortKey: -1731417702773
 isPrivate: false
 pathParameters: []
 afterResponseScript: |
